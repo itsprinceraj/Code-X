@@ -5,9 +5,27 @@ import { toggle } from "../../utils/utility";
 import { MdLightMode } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import { MdOutlineChecklist, MdOutlineGridView } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
 
 export const NavBar = ({ gridLayout, setGridLayout }) => {
   const navElements = ["Home", "About", "Contact", "Services"];
+  // const [dropDown, setDropDown] = useState(false);
+  const dropDownRef = useRef(null);
+
+  // useEffect(() => {
+  //   // handle outsideClick;
+  //   const handleClickOutside = (event) => {
+  //     if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+  //       setDropDown(false);
+  //     }
+  //   };
+
+  //   //add event listener to the document
+  //   document.addEventListener("click", handleClickOutside);
+
+  //   // cleanup function
+  //   return () => document.removeEventListener("click", handleClickOutside);
+  // }, []);
 
   return (
     <div className="navbar flex items-center justify-between px-[100px] h-[80px] bg-[#181717] m-auto">
@@ -32,14 +50,19 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
           name="Prince Raj"
           size="45"
           className=" rounded-full cursor-pointer"
-          onClick={() => toggle(".dropDownNavbar", "hidden")}
+          onClick={() => {
+            toggle(".dropDownNavbar", "hidden");
+          }}
         />
       </div>
 
       {/*  create a profile dropdown */}
-      <div className="dropDownNavbar hidden absolute right-[60px] top-[80px] shadow-lg shadow-black/50 p-[10px] rounded-xl bg-[#031233] w-[150px] h-[160px]">
+      <div
+        ref={dropDownRef}
+        className="dropDownNavbar hidden absolute right-[60px] top-[80px] shadow-lg shadow-black/50 p-[10px] rounded-xl bg-[#242425] w-[170px] h-[180px]"
+      >
         <div className="py-[10px] border-b-[1px] border-b-[#f72929]">
-          <h2 className="text-[17px]" style={{ lineHeight: 1 }}>
+          <h2 className="text-[22px]" style={{ lineHeight: 1 }}>
             {"Prince Raj"}
           </h2>
         </div>
@@ -49,26 +72,27 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
           className="flex items-center gap-2 mt-3 mb-2 cursor-pointer"
           style={{ fontStyle: "normal" }}
         >
-          <MdLightMode fill="#fcd703" className="text-[20px]" /> Light mode
+          <MdLightMode fill="#fcd703" className="text-[22px]" />{" "}
+          <span className="text-[20px]">Light mode</span>
         </div>
 
         {/* Grid view and List view Switch button */}
         <div
           onClick={() => setGridLayout(!gridLayout)}
-          className="flex items-center gap-2 mt-3 mb-2 cursor-pointer"
+          className="flex items-center gap-2 mt-3 mb-2 cursor-pointer text-[20px]"
           style={{ fontStyle: "normal" }}
         >
           {gridLayout ? (
-            <MdOutlineChecklist className="text-[20px]" fill="#03fc73" />
+            <MdOutlineChecklist className="text-[22px]" fill="#03fc73" />
           ) : (
-            <MdOutlineGridView className="text-[20px]" fill="#03fc73" />
+            <MdOutlineGridView className="text-[22px]" fill="#03fc73" />
           )}
           {gridLayout ? "List " : "Grid "}Layout
         </div>
 
         {/* Logout button */}
         <button className="text-lg flex gap-2 items-center">
-          <IoLogOut fill="#fc035e" /> Logout
+          <IoLogOut fill="#fc035e" size={22} /> Logout
         </button>
       </div>
     </div>
