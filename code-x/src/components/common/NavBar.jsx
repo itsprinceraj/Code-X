@@ -7,6 +7,8 @@ import { IoLogOut } from "react-icons/io5";
 import { MdOutlineChecklist, MdOutlineGridView } from "react-icons/md";
 
 export const NavBar = ({ gridLayout, setGridLayout }) => {
+  const navElements = ["Home", "About", "Contact", "Services"];
+
   return (
     <div className="navbar flex items-center justify-between px-[100px] h-[80px] bg-[#181717] m-auto">
       <Link to={"/"}>
@@ -17,19 +19,14 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
 
       {/* navlinks */}
       <div className="links flex items-center gap-10 text-xl ">
-        <Link className="hover:text-yellow-400 transition-all duration-100">
-          Home
-        </Link>
-        <Link className="hover:text-yellow-400 transition-all duration-100">
-          About
-        </Link>
-        <Link className="hover:text-yellow-400 transition-all duration-100">
-          Contact
-        </Link>
-        <Link className="hover:text-yellow-400 transition-all duration-100">
-          Services
-        </Link>
-
+        {navElements.map((ele, idx) => (
+          <Link
+            key={idx}
+            className="hover:text-yellow-400 transition-all duration-100"
+          >
+            {ele}
+          </Link>
+        ))}
         {/*  Avatar */}
         <Avatar
           name="Prince Raj"
