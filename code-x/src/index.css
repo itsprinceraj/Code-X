@@ -143,3 +143,31 @@ html {
   color: #fff;
   text-decoration: none;
 }
+
+/*  delete button */
+
+.btn-delete {
+  background-image: linear-gradient(
+    to right,
+    #ff512f 0%,
+    #dd2476 51%,
+    #ff512f 100%
+  );
+}
+.btn-delete {
+  margin: 10px;
+  padding: 8px 30px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  border-radius: 10px;
+  display: block;
+  font-size: 22px;
+}
+
+.btn-delete:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}

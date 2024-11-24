@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/Horizontal lockup - White.png";
 import Avatar from "react-avatar";
-import { toggle } from "../../utility";
+import { toggle } from "../../utils/utility";
 import { MdLightMode } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import { MdOutlineChecklist, MdOutlineGridView } from "react-icons/md";
@@ -9,9 +9,11 @@ import { MdOutlineChecklist, MdOutlineGridView } from "react-icons/md";
 export const NavBar = ({ gridLayout, setGridLayout }) => {
   return (
     <div className="navbar flex items-center justify-between px-[100px] h-[80px] bg-[#181717] m-auto">
-      <div className="logo">
-        <img className="w-[150px] cursor-pointer" src={logo} alt="" />
-      </div>
+      <Link to={"/"}>
+        <div className="logo">
+          <img className="w-[150px] cursor-pointer" src={logo} alt="" />
+        </div>
+      </Link>
 
       {/* navlinks */}
       <div className="links flex items-center gap-10 text-xl ">

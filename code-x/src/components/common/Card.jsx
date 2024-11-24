@@ -1,7 +1,10 @@
-import projectLogo from "../assets/images/projectlogo.png";
+import { useState } from "react";
+import projectLogo from "../../assets/images/projectlogo.png";
 import { MdOutlineFolderDelete } from "react-icons/md";
+import { DeleteModal } from "./DeleteModal";
 
 export const Card = ({ gridLayout }) => {
+  const [deleteModal, setDeleteModal] = useState(false);
   return (
     <>
       {/* image and title */}
@@ -15,14 +18,24 @@ export const Card = ({ gridLayout }) => {
       </div>
       {/*  delete icon */}
       {gridLayout ? (
-        <div onClick={""} className=" relative -bottom-12 left-52">
+        <div
+          onClick={() => setDeleteModal(true)}
+          className=" relative -bottom-12 left-52"
+        >
           <MdOutlineFolderDelete fill="red" size={30} />
         </div>
       ) : (
-        <div onClick={""} className=" w-[30px] cursor-pointer mr-4">
+        <div
+          onClick={() => setDeleteModal(true)}
+          className=" w-[30px] cursor-pointer mr-4"
+        >
           <MdOutlineFolderDelete fill="red" size={30} />
         </div>
       )}
+
+      {/*  show delete modal */}
+
+      {deleteModal ? <DeleteModal setModal={setDeleteModal} /> : ""}
     </>
   );
 };

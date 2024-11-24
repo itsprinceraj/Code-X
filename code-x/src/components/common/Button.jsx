@@ -1,5 +1,10 @@
-export const Button = ({ text, style }) => {
+export const Button = ({ text, style, onClick, className }) => {
   return (
-    <button className={`btn-grad mt-[20px] text-xl ${style}`}>{text}</button>
+    <button
+      onClick={onClick}
+      className={`btn-grad mt-[20px] text-xl ${className}`}
+    >
+      {text}
+    </button>
   );
 };

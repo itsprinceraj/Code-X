@@ -4,7 +4,7 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { Home } from "./pages/Home";
 import { Signup } from "./components/auth/Signup";
 import { Login } from "./components/auth/Login";
-import { Editor } from "./pages/Editor";
+import { CodeEditor } from "./pages/CodeEditor";
 function App() {
   return (
     <>
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/editor/:projectId" element={<Editor />} />
+        <Route path="/editor/:projectId" element={<CodeEditor />} />
         <Route path="*" element={<NotFoundPage />}></Route>
       </Routes>
     </>

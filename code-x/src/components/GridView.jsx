@@ -1,4 +1,4 @@
-import { Card } from "./Card";
+import { Card } from "../components/common/Card";
 
 export const GridView = ({gridLayout}) => {
   return (

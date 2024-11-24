@@ -3,9 +3,11 @@ import { NavBar } from "../components/common/NavBar";
 import { GridView } from "../components/GridView";
 import { ListView } from "../components/ListView";
 import { Button } from "../components/common/Button";
+import { AddProjectModal } from "../components/common/AddProjectModal";
 
 export const Home = () => {
   const [isGridLayout, setIsGridLayout] = useState(false);
+  const [addProjModal, setAddProjModal] = useState(false);
   return (
     <>
       <NavBar gridLayout={isGridLayout} setGridLayout={setIsGridLayout} />
@@ -20,7 +22,11 @@ export const Home = () => {
           </div>
 
           {/*  */}
-          <Button text={"+ Project"} style={"w-[180px] font-semibold"} />
+          <Button
+            text={"+ Project"}
+            className="w-[180px] font-semibold"
+            onClick={() => setAddProjModal(true)}
+          />
         </div>
       </div>
 
@@ -36,6 +42,9 @@ export const Home = () => {
           </div>
         )}
       </div>
+
+      {/*  show Add Project modal */}
+      {addProjModal && <AddProjectModal setModal={setAddProjModal} />}
     </>
   );
 };
