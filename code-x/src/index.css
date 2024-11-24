@@ -18,5 +18,128 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  background-color: #0d0c0c;
+  color: #fff;
+  overflow-x: hidden;
+}
+html {
+  overflow-x: hidden;
+}
+.inputBox {
+  width: 100%;
+  background-color: #141414;
+  border-radius: 8px;
+  border-bottom: 2px solid rgb(84, 159, 238);
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-right: 10px;
+}
+
+.inputBox input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+
+.btnBlue {
+  background-color: #d7ef00;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: 200ms linear;
+}
+.btnBlue:hover {
+  background-color: Black;
+}
+.grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 15px;
+}
+
+.lightMode {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.lightMode .navbar {
+  background-color: #fff;
+}
+
+.lightMode .tabs {
+  background-color: #f7f7f7;
+}
+.lightMode .tabs .tab {
+  background-color: #c2c1c1;
+  color: #000;
+}
+
+.lightMode .btn {
+  background-color: #c2c1c1;
+  color: #000;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  );
+}
+.btn-grad {
+  padding: 15px 45px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+/*  add new project button */
+
+.btn-add-project {
+  background-image: linear-gradient(
+    to right,
+    #4b6cb7 0%,
+    #182848 51%,
+    #4b6cb7 100%
+  );
+}
+.btn-add-project {
+  margin: 10px;
+  padding: 10px 10px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-add-project:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
