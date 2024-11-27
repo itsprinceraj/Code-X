@@ -24,7 +24,7 @@ function App() {
                 setLoading={setPageLoader}
               />
             ) : (
-              <Navigate to={"/login"} />
+              <Navigate to={"/signup"} />
             )
           }
         ></Route>
