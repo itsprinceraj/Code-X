@@ -4,10 +4,15 @@ import logoCodex from "../../assets/images/codexWhite.svg";
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 import { Button } from "../common/Button";
+import { authEndpoints } from "../../services/apiEndpoints";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  //  get login url;
+  const { LOGIN_URL } = authEndpoints;
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,8 +27,42 @@ export const Login = () => {
   };
 
   //  form submit handler;
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+    try {
+      // make an api call;
+      const response = await fetch(LOGIN_URL, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email.trim(),
+          password: formData.password.trim(),
+        }),
+      });
+
+      //  convert data into json format;
+      const result = await response.json();
+      const token = result.data.token;
+      const id = result.data.user._id;
+      const user = result.data.user;
+      // console.log(result);
+      if (!result.success) {
+        toast.error(result.message);
+        throw Error("Something went wrong");
+      } else {
+        toast.success(result.message);
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", id);
+        localStorage.setItem("user", user);
+        localStorage.setItem("isLoggedIn", true);
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -33,7 +72,7 @@ export const Login = () => {
           <img className="w-[150px]" src={logoCodex} alt="codexLogo" />
 
           {/*  Login form */}
-          <form onSubmit={submitHandler} className="w-full mt-[60px]">
+          <form className="w-full mt-[60px]">
             <div className="inputBox">
               <input
                 required
@@ -65,7 +104,7 @@ export const Login = () => {
             </div>
 
             {/* submit button */}
-            <Button text={"Login"} style={"w-full"} />
+            <Button onClick={submitHandler} text={"Login"} style={"w-full"} />
           </form>
         </div>
 

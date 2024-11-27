@@ -86,7 +86,7 @@ exports.getAllProjects = async (req, res) => {
 
     //  send data in response;
     res.status(200).json({
-      success: false,
+      success: true,
       message: "All projects fetched.",
       projects,
     });
@@ -106,7 +106,7 @@ exports.deleteProject = async (req, res) => {
     const { userId, projId } = req.body;
 
     // validate data;
-    if (!userId || projId) {
+    if (!userId || !projId) {
       return res.status(400).json({
         success: false,
         message: "please provide id's",
@@ -164,10 +164,10 @@ exports.deleteProject = async (req, res) => {
 exports.updateproject = async (req, res) => {
   try {
     // get updated data from body;
-    const { userId, title, htmlCode, cssCode, jsCode, projId } = req.body;
+    const { userId, projId, htmlCode, cssCode, jsCode } = req.body;
 
     //  validate;
-    if (!userId || !title || !htmlCode || !cssCode || !jsCode || !projId) {
+    if (!userId || !htmlCode || !cssCode || !jsCode || !projId) {
       return res.status(400).json({
         success: false,
         message: "data missing.",
@@ -177,7 +177,7 @@ exports.updateproject = async (req, res) => {
     //  now update project;
     const updatedProject = await Project.findOneAndUpdate(
       { _id: projId },
-      { title: title, htmlCode: htmlCode, cssCode: cssCode, jsCode: jsCode },
+      { htmlCode: htmlCode, cssCode: cssCode, jsCode: jsCode },
       { new: true }
     );
 

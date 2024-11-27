@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Horizontal lockup - White.png";
 import Avatar from "react-avatar";
 import { toggle } from "../../utils/utility";
@@ -11,6 +11,7 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
   const navElements = ["Home", "About", "Contact", "Services"];
   // const [dropDown, setDropDown] = useState(false);
   const dropDownRef = useRef(null);
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   // handle outsideClick;
@@ -26,6 +27,15 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
   //   // cleanup function
   //   return () => document.removeEventListener("click", handleClickOutside);
   // }, []);
+
+  // logount call
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("user");
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
 
   return (
     <div className="navbar flex items-center justify-between px-[100px] h-[80px] bg-[#181717] m-auto">
@@ -67,15 +77,6 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
           </h2>
         </div>
 
-        {/*  Light and Dark mode Toggle button */}
-        <div
-          className="flex items-center gap-2 mt-3 mb-2 cursor-pointer"
-          style={{ fontStyle: "normal" }}
-        >
-          <MdLightMode fill="#fcd703" className="text-[22px]" />{" "}
-          <span className="text-[20px]">Light mode</span>
-        </div>
-
         {/* Grid view and List view Switch button */}
         <div
           onClick={() => setGridLayout(!gridLayout)}
@@ -91,7 +92,7 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
         </div>
 
         {/* Logout button */}
-        <button className="text-lg flex gap-2 items-center">
+        <button onClick={logout} className="text-lg flex gap-2 items-center">
           <IoLogOut fill="#fc035e" size={22} /> Logout
         </button>
       </div>

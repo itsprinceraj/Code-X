@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "cd server && npm start",
+    "start": "concurrently -n \"client,server\" -c \"bgGreen,bgYellow\" \"npm run dev\" \"npm run server\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
