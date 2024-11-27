@@ -1,4 +1,4 @@
-const BASE_URL = "https://code-x-ashen.vercel.app/api/v1";
+const BASE_URL = "https://code-x-3oob.onrender.com/api/v1";
 const AUTH = "/auth";
 const PROJECT = "/project";
 
