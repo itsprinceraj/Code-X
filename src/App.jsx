@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { Home } from "./pages/Home";
 import { Signup } from "./components/auth/Signup";
@@ -9,6 +9,7 @@ import { useState } from "react";
 function App() {
   const [loader, setLoader] = useState(false);
   const [pageLoader, setPageLoader] = useState(false);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   return (
     <>
@@ -16,11 +17,15 @@ function App() {
         <Route
           path="/"
           element={
-            <Home
-              loader={loader}
-              setLoader={setLoader}
-              setLoading={setPageLoader}
-            />
+            isLoggedIn ? (
+              <Home
+                loader={loader}
+                setLoader={setLoader}
+                setLoading={setPageLoader}
+              />
+            ) : (
+              <Navigate to={"/login"} />
+            )
           }
         ></Route>
         <Route path="/signup" element={<Signup />} />
@@ -28,10 +33,17 @@ function App() {
         <Route
           path="/editor/:projectId"
           element={
-            <CodeEditor loading={pageLoader} setLoading={setPageLoader} />
+            isLoggedIn ? (
+              <CodeEditor loading={pageLoader} setLoading={setPageLoader} />
+            ) : (
+              <Navigate to={"/login"} />
+            )
           }
         />
-        <Route path="*" element={<NotFoundPage />}></Route>
+        <Route
+          path="*"
+          element={isLoggedIn ? <NotFoundPage /> : <Navigate to={"/login"} />}
+        ></Route>
       </Routes>
     </>
   );
