@@ -78,7 +78,7 @@ export const Signup = () => {
           <img className="w-[150px]" src={logoCodex} alt="codexLogo" />
 
           {/*  signUp form */}
-          <form onClick={submitHandler} className="w-full mt-[60px]">
+          <form onSubmit={submitHandler} className="w-full mt-[60px]">
             <div className="inputBox">
               <input
                 required
