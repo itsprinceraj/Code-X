@@ -4,7 +4,6 @@ import logoCodex from "../../assets/images/codexWhite.svg";
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "../common/Button";
 import { authEndpoints } from "../../services/apiEndpoints";
 import toast from "react-hot-toast";
 
@@ -33,6 +32,7 @@ export const Signup = () => {
 
   //  form submit handler;
   const submitHandler = async (e) => {
+    const toastId = toast.loading("Loading...");
     e.preventDefault();
     if (formData.password !== formData.confirmPass) {
       console.log("pass not matched");
@@ -68,6 +68,7 @@ export const Signup = () => {
     } catch (err) {
       console.log(err);
     }
+    toast.dismiss(toastId);
   };
   return (
     <>
