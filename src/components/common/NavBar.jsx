@@ -6,6 +6,7 @@ import { MdLightMode } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import { MdOutlineChecklist, MdOutlineGridView } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 export const NavBar = ({ gridLayout, setGridLayout }) => {
   const navElements = ["Home", "About", "Contact", "Services"];
@@ -30,11 +31,17 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
 
   // logount call
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("user");
-    localStorage.removeItem("isLoggedIn");
-    navigate("/login");
+    try {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("user");
+      localStorage.removeItem("isLoggedIn");
+      toast.success("Logged Out");
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      toast.error("Logout Failed");
+    }
   };
 
   return (

@@ -38,27 +38,29 @@ export const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: formData.email.trim(),
+          email: formData.email.toLowerCase().trim(),
           password: formData.password.trim(),
         }),
       });
 
       //  convert data into json format;
+      console.log(response);
       const result = await response.json();
-      const token = result.data.token;
-      const id = result.data.user._id;
-      const user = result.data.user;
-      // console.log(result);
-      if (!result.success) {
-        toast.error(result.message);
-        throw Error("Something went wrong");
-      } else {
-        toast.success(result.message);
+
+      console.log(result);
+      if (result?.success) {
+        const token = result?.data?.token;
+        const id = result?.data.user?._id;
+        const user = result?.data?.user;
         localStorage.setItem("token", token);
         localStorage.setItem("userId", id);
         localStorage.setItem("user", user);
         localStorage.setItem("isLoggedIn", true);
+        toast.success(result.message);
         navigate("/");
+      } else {
+        toast.error(result.message);
+        throw Error("Something went wrong");
       }
     } catch (err) {
       console.log(err);
@@ -72,7 +74,7 @@ export const Login = () => {
           <img className="w-[150px]" src={logoCodex} alt="codexLogo" />
 
           {/*  Login form */}
-          <form className="w-full mt-[60px]">
+          <form onSubmit={submitHandler} className="w-full mt-[60px]">
             <div className="inputBox">
               <input
                 required
@@ -104,7 +106,9 @@ export const Login = () => {
             </div>
 
             {/* submit button */}
-            <Button onClick={submitHandler} text={"Login"} style={"w-full"} />
+            <button className={`btn-grad mt-[20px] text-xl w-full`}>
+              Login
+            </button>
           </form>
         </div>
 

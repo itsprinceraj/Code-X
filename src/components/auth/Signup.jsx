@@ -50,7 +50,7 @@ export const Signup = () => {
         body: JSON.stringify({
           name: formData.name,
           userName: formData.username.trim(),
-          email: formData.email.trim(),
+          email: formData.email.toLowerCase().trim(),
           password: formData.password.trim(),
         }),
       });
@@ -59,6 +59,7 @@ export const Signup = () => {
       const result = await response.json();
       if (!result.success) {
         toast.error(result.message);
+        toast.error("Failed to SignUp");
         throw Error("Something went wrong");
       } else {
         toast.success(result.message);
@@ -77,7 +78,7 @@ export const Signup = () => {
           <img className="w-[150px]" src={logoCodex} alt="codexLogo" />
 
           {/*  signUp form */}
-          <form className="w-full mt-[60px]">
+          <form onClick={submitHandler} className="w-full mt-[60px]">
             <div className="inputBox">
               <input
                 required
@@ -158,7 +159,9 @@ export const Signup = () => {
           </p>
 
           {/* submit button */}
-          <Button onClick={submitHandler} text={"SignUp"} style={"w-full"} />
+          <button className={`btn-grad mt-[20px] text-xl w-full`}>
+            Sign Up
+          </button>
         </div>
 
         {/* right div */}

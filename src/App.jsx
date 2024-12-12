@@ -9,7 +9,7 @@ import { useState } from "react";
 function App() {
   const [loader, setLoader] = useState(false);
   const [pageLoader, setPageLoader] = useState(false);
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   return (
     <>

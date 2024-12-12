@@ -35,7 +35,7 @@ exports.signup = async (req, res) => {
     await User.create({
       name: name,
       userName: userName,
-      email: email,
+      email: email.toLowerCase(),
       password: hashedPass,
     });
 
@@ -78,7 +78,7 @@ exports.login = async (req, res) => {
     }
 
     // if user found then compare hashed password;
-    const checkPass = bcrypt.compare(password, user.password);
+    const checkPass = await bcrypt.compare(password, user.password);
 
     //  validate
     if (!checkPass) {
