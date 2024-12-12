@@ -30,7 +30,7 @@ exports.signup = async (req, res) => {
 
     //  if user is new, then encrypt pass and save it into the database;
     const hashedPass = await bcrypt.hash(password, 10);
-    console.log(hashedPass);
+    // console.log(hashedPass);
 
     await User.create({
       name: name,

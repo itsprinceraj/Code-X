@@ -59,7 +59,6 @@ export const Signup = () => {
       const result = await response.json();
       if (!result.success) {
         toast.error(result.message);
-        toast.error("Failed to SignUp");
         throw Error("Something went wrong");
       } else {
         toast.success(result.message);
