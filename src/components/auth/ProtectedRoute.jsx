@@ -6,6 +6,6 @@ export const ProtectedRoute = ({ children }) => {
   if (token) {
     return children;
   } else {
-    return <Navigate to={"/signup"} />;
+    return <Navigate to={"/login"} />;
   }
 };

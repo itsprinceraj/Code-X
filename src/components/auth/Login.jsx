@@ -6,7 +6,7 @@ import { IoEyeOff } from "react-icons/io5";
 import { Button } from "../common/Button";
 import { authEndpoints } from "../../services/apiEndpoints";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   //  get login url;
@@ -106,6 +106,13 @@ export const Login = () => {
                 )}
               </div>
             </div>
+
+            <p className="text-[gray] text-lg text-right">
+              Already have an account?{" "}
+              <Link to="/signup" className="text-[#00AEEF]">
+                signUp
+              </Link>
+            </p>
 
             {/* submit button */}
             <button className={`btn-grad mt-[20px] text-xl w-full`}>
