@@ -6,10 +6,11 @@ import { Signup } from "./components/auth/Signup";
 import { Login } from "./components/auth/Login";
 import { CodeEditor } from "./pages/CodeEditor";
 import { useState } from "react";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import { OpenRoute } from "./components/auth/OpenRoute";
 function App() {
   const [loader, setLoader] = useState(false);
   const [pageLoader, setPageLoader] = useState(false);
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   return (
     <>
@@ -17,32 +18,46 @@ function App() {
         <Route
           path="/"
           element={
-            isLoggedIn ? (
+            <ProtectedRoute>
               <Home
                 loader={loader}
                 setLoader={setLoader}
                 setLoading={setPageLoader}
               />
-            ) : (
-              <Navigate to={"/signup"} />
-            )
+            </ProtectedRoute>
           }
         ></Route>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/signup"
+          element={
+            <OpenRoute>
+              <Signup />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <OpenRoute>
+              <Login />
+            </OpenRoute>
+          }
+        />
         <Route
           path="/editor/:projectId"
           element={
-            isLoggedIn ? (
+            <ProtectedRoute>
               <CodeEditor loading={pageLoader} setLoading={setPageLoader} />
-            ) : (
-              <Navigate to={"/login"} />
-            )
+            </ProtectedRoute>
           }
         />
         <Route
           path="*"
-          element={isLoggedIn ? <NotFoundPage /> : <Navigate to={"/login"} />}
+          element={
+            <ProtectedRoute>
+              <NotFoundPage />
+            </ProtectedRoute>
+          }
         ></Route>
       </Routes>
     </>

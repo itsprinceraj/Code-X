@@ -29,6 +29,7 @@ export const Login = () => {
   //  form submit handler;
   const submitHandler = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading("Loading...");
     try {
       // make an api call;
       const response = await fetch(LOGIN_URL, {
@@ -44,7 +45,7 @@ export const Login = () => {
       });
 
       //  convert data into json format;
-      console.log(response);
+      // console.log(response);
       const result = await response.json();
 
       console.log(result);
@@ -65,6 +66,7 @@ export const Login = () => {
     } catch (err) {
       console.log(err);
     }
+    toast.dismiss(toastId);
   };
   return (
     <>
