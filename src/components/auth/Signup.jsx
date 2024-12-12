@@ -148,19 +148,19 @@ export const Signup = () => {
                 )}
               </div>
             </div>
+
+            <p className="text-[gray] text-lg text-right">
+              Already have an account?{" "}
+              <Link to="/login" className="text-[#00AEEF]">
+                login
+              </Link>
+            </p>
+
+            {/* submit button */}
+            <button className={`btn-grad mt-[20px] text-xl w-full`}>
+              Sign Up
+            </button>
           </form>
-
-          <p className="text-[gray] text-lg text-right">
-            Already have an account?{" "}
-            <Link to="/login" className="text-[#00AEEF]">
-              login
-            </Link>
-          </p>
-
-          {/* submit button */}
-          <button className={`btn-grad mt-[20px] text-xl w-full`}>
-            Sign Up
-          </button>
         </div>
 
         {/* right div */}
