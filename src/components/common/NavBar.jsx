@@ -13,21 +13,14 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
   // const [dropDown, setDropDown] = useState(false);
   const dropDownRef = useRef(null);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   // handle outsideClick;
-  //   const handleClickOutside = (event) => {
-  //     if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
-  //       setDropDown(false);
-  //     }
-  //   };
-
-  //   //add event listener to the document
-  //   document.addEventListener("click", handleClickOutside);
-
-  //   // cleanup function
-  //   return () => document.removeEventListener("click", handleClickOutside);
-  // }, []);
+  const [userName, setUserName] = useState("");
+  useEffect(() => {
+    const userDetails = JSON.parse(localStorage.getItem("user"));
+    if (userDetails) {
+      console.log(userDetails);
+      setUserName(userDetails.name);
+    }
+  }, []);
 
   // logount call
   const logout = () => {
@@ -64,7 +57,7 @@ export const NavBar = ({ gridLayout, setGridLayout }) => {
         ))}
         {/*  Avatar */}
         <Avatar
-          name="Prince Raj"
+          name={userName}
           size="45"
           className=" rounded-full cursor-pointer"
           onClick={() => {

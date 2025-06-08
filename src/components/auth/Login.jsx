@@ -55,7 +55,7 @@ export const Login = () => {
         const user = result?.data?.user;
         localStorage.setItem("token", token);
         localStorage.setItem("userId", id);
-        localStorage.setItem("user", user);
+        localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("isLoggedIn", true);
         toast.success(result.message);
         navigate("/");
